@@ -1,9 +1,9 @@
 {
-  "_hash": "hmVD_BAEW3zErErcO2i9t_4hOZG4PL7oKd8hkZ4VCL4",
+  "_hash": "gm8aCmZx7c4hGGGCWC26Ch4qrOrF3rsIiyA5qa7Vqr0",
   "project": {
     "rootDir": "C:/Users/Acer/Desktop/SeatSystem/frontend"
   },
   "versions": {
-    "nuxt": "3.16.0"
+    "nuxt": "3.20.2"
   }
 }

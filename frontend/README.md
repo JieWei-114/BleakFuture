@@ -1,3 +1,29 @@
+# Frontend (Nuxt 3)
+
+This folder contains the Nuxt 3 frontend for SeatSystem.
+
+Prerequisites
+
+- Node.js >= 18 and npm
+
+Install & run (development)
+
+cd frontend
+npm install
+npm run dev
+
+Linting & formatting
+
+cd frontend
+npm run lint
+npm run lint:fix
+npm run format
+
+Notes
+
+- The app uses Nuxt 3, Pinia for state, TailwindCSS for styles.
+- API requests are in `services/api.ts` — update base URL if backend runs on a different host/port.
+
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.

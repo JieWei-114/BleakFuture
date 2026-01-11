@@ -1,5 +1,5 @@
-import { defineStore } from "pinia";
-import { useStorage } from "@vueuse/core";
+import { defineStore } from 'pinia';
+import { useStorage } from '@vueuse/core';
 
 interface User {
   id: number;
@@ -7,9 +7,9 @@ interface User {
   role: string;
 }
 
-export const useAuthStore = defineStore("auth", {
+export const useAuthStore = defineStore('auth', {
   state: () => ({
-    token: useStorage("token", null as string | null),
+    token: useStorage('token', null as string | null),
     user: null as { id: number; username: string; role: string } | null,
   }),
   actions: {

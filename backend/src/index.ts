@@ -34,7 +34,7 @@ app.get('/', (req: Request, res: Response) => {
   res.status(200).json({ status: 'success', message: 'API working' });
 });
 
-app.use('/uploads/floorplans', express.static(path.join(__dirname, '../../backend/public/uploads/floorplans')));
+app.use('/uploads/floorplans', express.static(path.join(__dirname, '../public/uploads/floorplans')));
 
 app.use('/api/', testRoute)
 app.use('/api/auth', userRoutes);

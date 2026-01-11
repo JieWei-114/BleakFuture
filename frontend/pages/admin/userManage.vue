@@ -18,7 +18,7 @@
     <div v-if="message" class="mb-4" :class="{ 'text-red-500': error, 'text-green-500': !error }">
       {{ message }}
     </div>
-    <table class="w-full ">
+    <table class="w-full">
       <thead>
         <tr class="bg-gray-200">
           <th class="p-3 w-[10%]">ID</th>
@@ -84,7 +84,10 @@ const error = ref(false);
 const router = useRouter();
 
 onMounted(() => {
-  if (!authStore.isAuthenticated || !['super_admin', 'facility_manager'].includes(authStore.user?.role || '')) {
+  if (
+    !authStore.isAuthenticated ||
+    !['super_admin', 'facility_manager'].includes(authStore.user?.role || '')
+  ) {
     router.push('/booking');
   } else {
     fetchUsers(); // Load all users initially

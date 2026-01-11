@@ -2,9 +2,7 @@
   <div class="min-h-screen min-w-full relative">
     <div class="absolute top-[40%] left-[20%] right-[20%]">
       <div id="load" class="flex justify-center">
-        <h1 class="text-2xl pb-4">
-          We’re working hard behind the scenes 
-        </h1>
+        <h1 class="text-2xl pb-4">We’re working hard behind the scenes</h1>
       </div>
       <div class="flex justify-center">
         <div id="progressbar" class="flex items-center">
@@ -12,17 +10,15 @@
         </div>
       </div>
       <div class="flex justify-center">
-        <h1 class="text-2xl pt-4 ">
-          Just a little patience - We get everything ready for you
-        </h1>
+        <h1 class="text-2xl pt-4">Just a little patience - We get everything ready for you</h1>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const countdown = ref(6);
@@ -33,7 +29,7 @@ onMounted(() => {
       countdown.value--; // Decrease countdown
     } else {
       clearInterval(interval);
-      router.push("/login"); // Redirect after countdown ends
+      router.push('/login'); // Redirect after countdown ends
     }
   }, 1000); // Decrease every 1 second
 });

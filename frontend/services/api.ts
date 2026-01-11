@@ -1,11 +1,11 @@
-import axios from "axios";
-import { useAuthStore } from "../stores/auth";
+import axios from 'axios';
+import { useAuthStore } from '../stores/auth';
 
 // Base API configuration
 const api = axios.create({
-  baseURL: "http://localhost:5000/api", // Matches nuxt.config.ts runtimeConfig
+  baseURL: 'http://localhost:5000/api', // Matches nuxt.config.ts runtimeConfig
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 
@@ -25,7 +25,7 @@ api.interceptors.response.use(
     if (error.response?.status === 401 || error.response?.status === 403) {
       const authStore = useAuthStore();
       authStore.clearAuth();
-      window.location.href = "/login"; // Redirect to login on auth failure
+      window.location.href = '/login'; // Redirect to login on auth failure
     }
     return Promise.reject(error);
   }
@@ -33,12 +33,8 @@ api.interceptors.response.use(
 
 // API functions
 // USER
-export const registerUser = async (
-  username: string,
-  password: string,
-  role: string
-) => {
-  const response = await api.post("/auth/register", {
+export const registerUser = async (username: string, password: string, role: string) => {
+  const response = await api.post('/auth/register', {
     username,
     password,
     role,
@@ -47,46 +43,39 @@ export const registerUser = async (
 };
 
 export const loginUser = async (username: string, password: string) => {
-  const response = await api.post("/auth/login", { username, password });
+  const response = await api.post('/auth/login', { username, password });
   return response.data;
 };
 
-export const updateUserProfile = async (
-  username: string,
-  password?: string
-) => {
-  const response = await api.put("/auth/profile", { username, password });
+export const updateUserProfile = async (username: string, password?: string) => {
+  const response = await api.put('/auth/profile', { username, password });
   return response.data;
 };
 
-export const searchUsers = async (query: string = "") => {
-  const response = await api.get("/auth/users", { params: { query } });
+export const searchUsers = async (query: string = '') => {
+  const response = await api.get('/auth/users', { params: { query } });
   return response.data;
 };
 
 export const updateUserByAdmin = async (userId: number, username: string) => {
   const Username = username.toLowerCase();
-  const response = await api.put("/auth/users", { userId, username: Username });
+  const response = await api.put('/auth/users', { userId, username: Username });
   return response.data;
 };
 
 export const deleteUserByAdmin = async (userId: number) => {
-  const response = await api.delete("/auth/users", { data: { userId } });
+  const response = await api.delete('/auth/users', { data: { userId } });
   return response.data;
 };
 
 //Building
 export const addBuilding = async (name: string) => {
-  const response = await api.post("/building/buildings", { name });
+  const response = await api.post('/building/buildings', { name });
   return response.data;
 };
 
-export const addFloor = async (
-  buildingId: number,
-  name: string,
-  description: string
-) => {
-  const response = await api.post("/building/floors", {
+export const addFloor = async (buildingId: number, name: string, description: string) => {
+  const response = await api.post('/building/floors', {
     buildingId,
     name,
     description,
@@ -95,16 +84,12 @@ export const addFloor = async (
 };
 
 export const updateBuilding = async (buildingId: number, name: string) => {
-  const response = await api.put("/building/buildings", { buildingId, name });
+  const response = await api.put('/building/buildings', { buildingId, name });
   return response.data;
 };
 
-export const updateFloor = async (
-  floorId: number,
-  name: string,
-  description: string
-) => {
-  const response = await api.put("/building/floors", {
+export const updateFloor = async (floorId: number, name: string, description: string) => {
+  const response = await api.put('/building/floors', {
     floorId,
     name,
     description,
@@ -113,19 +98,19 @@ export const updateFloor = async (
 };
 
 export const deleteBuilding = async (buildingId: number) => {
-  const response = await api.delete("/building/buildings", {
+  const response = await api.delete('/building/buildings', {
     data: { buildingId },
   });
   return response.data;
 };
 
 export const deleteFloor = async (floorId: number) => {
-  const response = await api.delete("/building/floors", { data: { floorId } });
+  const response = await api.delete('/building/floors', { data: { floorId } });
   return response.data;
 };
 
 export const getBuildingsAndFloors = async () => {
-  const response = await api.get("/building/buildings");
+  const response = await api.get('/building/buildings');
   return response.data;
 };
 
@@ -146,12 +131,8 @@ interface FloorPlan {
   seats?: Seat[];
 }
 
-export const createFloorPlan = async (
-  floorId: number,
-  image: string,
-  seats: Seat[]
-) => {
-  const response = await api.post("/floorplan/add", { floorId, image, seats });
+export const createFloorPlan = async (floorId: number, image: string, seats: Seat[]) => {
+  const response = await api.post('/floorplan/add', { floorId, image, seats });
   return response.data.data;
 };
 
@@ -179,17 +160,17 @@ interface bookingData {
 }
 
 export const bookingSeat = async (seatId: number, date: string) => {
-  const response = await api.post("/booking/add", { seatId, date });
+  const response = await api.post('/booking/add', { seatId, date });
   return response.data.data;
 };
 
 export const getBookingHistory = async () => {
-  const response = await api.get("/booking/history");
+  const response = await api.get('/booking/history');
   return response.data.data;
 };
 
 export const deleteBooking = async (bookingId: number) => {
-  const response = await api.delete("/booking/delete", { data: { bookingId } });
+  const response = await api.delete('/booking/delete', { data: { bookingId } });
   return response.data;
 };
 

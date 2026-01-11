@@ -4,9 +4,7 @@
       <h1 class="text-2xl font-bold">Booking</h1>
       <div v-if="authStore.user" class="flex text-lg items-center">
         <h1>Welcome, &nbsp;</h1>
-        <h1 class="font-bold">
-          {{ authStore.user.username }} - {{ authStore.user.role }}
-        </h1>
+        <h1 class="font-bold">{{ authStore.user.username }} - {{ authStore.user.role }}</h1>
       </div>
     </div>
     <div class="bg-gray-300 rounded-3xl mb-5">
@@ -30,11 +28,7 @@
               class="w-full p-2 border rounded"
             >
               <option value="">Select Building</option>
-              <option
-                v-for="building in buildings"
-                :key="building.id"
-                :value="building.id"
-              >
+              <option v-for="building in buildings" :key="building.id" :value="building.id">
                 {{ building.name }}
               </option>
             </select>
@@ -56,9 +50,7 @@
             <button
               @click="bookSelectedSeat"
               class="p-2 w-full bg-gray-800 text-white rounded hover:bg-gray-600 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors duration-200"
-              :disabled="
-                !selectedDate || !selectedSeat || !selectedSeat.available
-              "
+              :disabled="!selectedDate || !selectedSeat || !selectedSeat.available"
             >
               Book
             </button>
@@ -74,7 +66,7 @@
       <div v-if="selectedSeat" class="seat-info">
         <p>Seat: {{ selectedSeat.seatNumber }}</p>
         <p>Description: {{ selectedSeat.description }}</p>
-        <p>Available: {{ selectedSeat.available ? "Yes" : "No" }}</p>
+        <p>Available: {{ selectedSeat.available ? 'Yes' : 'No' }}</p>
       </div>
       <!-- Zoom Buttons
       <div v-if="canvasVisible" class="zoom-controls">

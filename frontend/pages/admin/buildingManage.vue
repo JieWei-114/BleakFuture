@@ -2,10 +2,7 @@
   <div class="p-10">
     <h1 class="text-2xl font-bold mb-4">Building Manage</h1>
     <div class="flex justify-between">
-      <div
-        v-if="isSuperAdmin"
-        class="w-[40%] bg-gray-300 p-5 rounded-md max-h-[480px]"
-      >
+      <div v-if="isSuperAdmin" class="w-[40%] bg-gray-300 p-5 rounded-md max-h-[480px]">
         <!-- Add Building (Super Admin only) -->
         <div class="mb-5">
           <h2 class="text-xl font-semibold mb-5">Add Building</h2>
@@ -30,17 +27,9 @@
         <div v-if="isSuperAdmin" class="mb-4">
           <h2 class="text-xl font-semibold mb-4">Add Floor</h2>
           <form @submit.prevent="handleAddFloor" class="space-y-2">
-            <select
-              v-model="selectedBuildingId"
-              class="w-full p-2 border rounded"
-              required
-            >
+            <select v-model="selectedBuildingId" class="w-full p-2 border rounded" required>
               <option value="">Select Building</option>
-              <option
-                v-for="building in buildings"
-                :key="building.id"
-                :value="building.id"
-              >
+              <option v-for="building in buildings" :key="building.id" :value="building.id">
                 {{ building.name }}
               </option>
             </select>
@@ -68,16 +57,9 @@
       </div>
 
       <!-- Manage Buildings and Floors -->
-      <div
-        class="mb-4 w-[58%] bg-gray-300 p-5 rounded-md"
-        :class="{ 'w-full': !isSuperAdmin }"
-      >
+      <div class="mb-4 w-[58%] bg-gray-300 p-5 rounded-md" :class="{ 'w-full': !isSuperAdmin }">
         <h2 class="text-xl mb-5 font-semibold">Buildings and Floors</h2>
-        <div
-          v-for="building in buildings"
-          :key="building.id"
-          class="mb-4 rounded-xl"
-        >
+        <div v-for="building in buildings" :key="building.id" class="mb-4 rounded-xl">
           <div class="flex justify-between bg-white p-2">
             <input
               v-if="editingBuildingId === building.id"
@@ -165,9 +147,7 @@
         v-if="showFloorPlanEditor"
         class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
       >
-        <div
-          class="bg-white p-4 rounded-lg w-[82%] max-h-[90%] overflow-y-auto"
-        >
+        <div class="bg-white p-4 rounded-lg w-[82%] max-h-[90%] overflow-y-auto">
           <floor-plan-editor
             :floor-id="selectedFloorId"
             :is-viewing-floor-plan="isViewingFloorPlan"
@@ -186,7 +166,7 @@
     <!-- Add Floor Plan (Super Admin only) -->
     <div v-if="isSuperAdmin" class="mb-4 mt-10">
       <div class="p-5 rounded-md bg-gray-300 mb-5">
-        <h2 class="text-xl font-semibold mb-5">Add Floor Plan</h2>
+        <h2 class="text-xl font-semibold mb-5">Edit/Add Floor Plan</h2>
         <div class="space-y-2">
           <select
             v-model="selectedBuildingIdForFloorPlan"
@@ -195,25 +175,13 @@
             required
           >
             <option value="">Select Building</option>
-            <option
-              v-for="building in buildings"
-              :key="building.id"
-              :value="building.id"
-            >
+            <option v-for="building in buildings" :key="building.id" :value="building.id">
               {{ building.name }}
             </option>
           </select>
-          <select
-            v-model="selectedFloorIdForFloorPlan"
-            class="w-full p-2 border rounded"
-            required
-          >
+          <select v-model="selectedFloorIdForFloorPlan" class="w-full p-2 border rounded" required>
             <option value="">Select Floor</option>
-            <option
-              v-for="floor in floorsForFloorPlan"
-              :key="floor.id"
-              :value="floor.id"
-            >
+            <option v-for="floor in floorsForFloorPlan" :key="floor.id" :value="floor.id">
               {{ floor.name }}
             </option>
           </select>
@@ -227,19 +195,16 @@
       />
     </div>
 
-    <p
-      class="mt-2 p-1"
-      :class="{ 'text-red-500': error, 'text-green-500': !error }"
-    >
+    <p class="mt-2 p-1" :class="{ 'text-red-500': error, 'text-green-500': !error }">
       {{ message }}
     </p>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useRouter } from "vue-router";
-import { ref, onMounted, computed, watch } from "vue";
-import { useAuthStore } from "../../stores/auth";
+import { useRouter } from 'vue-router';
+import { ref, onMounted, computed, watch } from 'vue';
+import { useAuthStore } from '../../stores/auth';
 import {
   addBuilding,
   addFloor,
@@ -248,8 +213,8 @@ import {
   deleteBuilding,
   deleteFloor,
   getBuildingsAndFloors,
-} from "../../services/api";
-import FloorPlanEditor from "../../components/floorPlanEditor.vue";
+} from '../../services/api';
+import FloorPlanEditor from '../../components/floorPlanEditor.vue';
 
 interface FloorPlan {
   id: number;
@@ -259,34 +224,34 @@ interface FloorPlan {
 }
 
 const authStore = useAuthStore();
-const buildingName = ref("");
-const floorName = ref("");
-const floorDescription = ref("");
-const selectedBuildingId = ref<number | string>("");
-const selectedBuildingIdForFloorPlan = ref<number | string>("");
-const selectedFloorIdForFloorPlan = ref<number | string>("");
+const buildingName = ref('');
+const floorName = ref('');
+const floorDescription = ref('');
+const selectedBuildingId = ref<number | string>('');
+const selectedBuildingIdForFloorPlan = ref<number | string>('');
+const selectedFloorIdForFloorPlan = ref<number | string>('');
 const floorsForFloorPlan = ref<any[]>([]);
 const buildings = ref<any[]>([]);
-const message = ref("");
+const message = ref('');
 const error = ref(false);
 const editingBuildingId = ref<number | null>(null);
-const editedBuildingName = ref("");
+const editedBuildingName = ref('');
 const editingFloorId = ref<number | null>(null);
-const editedFloorName = ref("");
-const editedFloorDescription = ref("");
+const editedFloorName = ref('');
+const editedFloorDescription = ref('');
 const showFloorPlanEditor = ref(false);
 const selectedFloorId = ref(0);
 const isViewingFloorPlan = ref(false);
 
 const router = useRouter();
-const isSuperAdmin = computed(() => authStore.user?.role === "super_admin");
+const isSuperAdmin = computed(() => authStore.user?.role === 'super_admin');
 
 onMounted(() => {
   if (
     !authStore.isAuthenticated ||
-    !["super_admin", "facility_manager"].includes(authStore.user?.role || "")
+    !['super_admin', 'facility_manager'].includes(authStore.user?.role || '')
   ) {
-    router.push("/booking");
+    router.push('/booking');
   } else {
     fetchBuildings();
   }
@@ -297,7 +262,7 @@ const fetchBuildings = async () => {
     const data = await getBuildingsAndFloors();
     buildings.value = data.data;
   } catch (err: any) {
-    message.value = err.response?.data?.message || "Failed to fetch buildings";
+    message.value = err.response?.data?.message || 'Failed to fetch buildings';
     error.value = true;
   }
 };
@@ -307,10 +272,10 @@ const handleAddBuilding = async () => {
     const data = await addBuilding(buildingName.value);
     message.value = data.message;
     error.value = false;
-    buildingName.value = "";
+    buildingName.value = '';
     fetchBuildings();
   } catch (err: any) {
-    message.value = err.response?.data?.message || "Failed to add building";
+    message.value = err.response?.data?.message || 'Failed to add building';
     error.value = true;
   }
 };
@@ -324,12 +289,12 @@ const handleAddFloor = async () => {
     );
     message.value = data.message;
     error.value = false;
-    floorName.value = "";
-    floorDescription.value = "";
-    selectedBuildingId.value = "";
+    floorName.value = '';
+    floorDescription.value = '';
+    selectedBuildingId.value = '';
     fetchBuildings();
   } catch (err: any) {
-    message.value = err.response?.data?.message || "Failed to add floor";
+    message.value = err.response?.data?.message || 'Failed to add floor';
     error.value = true;
   }
 };
@@ -339,7 +304,7 @@ const updateFloorsForFloorPlan = () => {
     (b) => b.id === Number(selectedBuildingIdForFloorPlan.value)
   );
   floorsForFloorPlan.value = building ? building.floors : [];
-  selectedFloorIdForFloorPlan.value = ""; // Reset floor selection
+  selectedFloorIdForFloorPlan.value = ''; // Reset floor selection
 };
 
 const editBuilding = (building: any) => {
@@ -355,21 +320,20 @@ const saveBuilding = async (buildingId: number) => {
     editingBuildingId.value = null;
     fetchBuildings();
   } catch (err: any) {
-    message.value = err.response?.data?.message || "Failed to update building";
+    message.value = err.response?.data?.message || 'Failed to update building';
     error.value = true;
   }
 };
 
 const deleteBuildingConfirm = async (buildingId: number) => {
-  if (confirm("Are you sure you want to delete this building?")) {
+  if (confirm('Are you sure you want to delete this building?')) {
     try {
       const data = await deleteBuilding(buildingId);
       message.value = data.message;
       error.value = false;
       fetchBuildings();
     } catch (err: any) {
-      message.value =
-        err.response?.data?.message || "Failed to delete building";
+      message.value = err.response?.data?.message || 'Failed to delete building';
       error.value = true;
     }
   }
@@ -383,30 +347,26 @@ const editFloor = (floor: any) => {
 
 const saveFloor = async (floorId: number) => {
   try {
-    const data = await updateFloor(
-      floorId,
-      editedFloorName.value,
-      editedFloorDescription.value
-    );
+    const data = await updateFloor(floorId, editedFloorName.value, editedFloorDescription.value);
     message.value = data.message;
     error.value = false;
     editingFloorId.value = null;
     fetchBuildings();
   } catch (err: any) {
-    message.value = err.response?.data?.message || "Failed to update floor";
+    message.value = err.response?.data?.message || 'Failed to update floor';
     error.value = true;
   }
 };
 
 const deleteFloorConfirm = async (floorId: number) => {
-  if (confirm("Are you sure you want to delete this floor?")) {
+  if (confirm('Are you sure you want to delete this floor?')) {
     try {
       const data = await deleteFloor(floorId);
       message.value = data.message;
       error.value = false;
       fetchBuildings();
     } catch (err: any) {
-      message.value = err.response?.data?.message || "Failed to delete floor";
+      message.value = err.response?.data?.message || 'Failed to delete floor';
       error.value = true;
     }
   }
@@ -424,17 +384,17 @@ const closeFloorPlanEditor = () => {
 };
 
 const onFloorPlanSaved = (floorPlan: FloorPlan) => {
-  console.log("Floor plan saved for editing:", floorPlan);
+  console.log('Floor plan saved for editing:', floorPlan);
   showFloorPlanEditor.value = false;
   fetchBuildings();
 };
 
 const onFloorPlanSavedForAdd = (floorPlan: FloorPlan) => {
-  console.log("Floor plan saved for adding:", floorPlan);
-  message.value = "Floor plan added successfully!";
+  console.log('Floor plan saved for adding:', floorPlan);
+  message.value = 'Floor plan added successfully!';
   error.value = false;
-  selectedBuildingIdForFloorPlan.value = "";
-  selectedFloorIdForFloorPlan.value = "";
+  selectedBuildingIdForFloorPlan.value = '';
+  selectedFloorIdForFloorPlan.value = '';
   fetchBuildings();
 };
 </script>

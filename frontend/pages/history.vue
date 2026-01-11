@@ -32,8 +32,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import { getBookingHistory, deleteBooking } from "../services/api";
+import { ref, onMounted } from 'vue';
+import { getBookingHistory, deleteBooking } from '../services/api';
 
 // Define the Booking interface based on expected API response
 interface Booking {
@@ -53,28 +53,25 @@ const fetchBookings = async (): Promise<void> => {
   try {
     const response: Booking[] = await getBookingHistory();
     bookings.value = response;
-    console.log("Bookings fetched:", bookings.value);
+    console.log('Bookings fetched:', bookings.value);
   } catch (err: unknown) {
-    console.error("Failed to fetch bookings:", err);
+    console.error('Failed to fetch bookings:', err);
   }
 };
 
 // Type the handleDelete function
 const handleDelete = async (bookingId: number): Promise<void> => {
-  if (!confirm("Are you sure you want to delete this booking?")) return;
+  if (!confirm('Are you sure you want to delete this booking?')) return;
   try {
     await deleteBooking(bookingId);
-    console.log("Booking deleted:", bookingId);
-    alert("Booking deleted successfully!");
+    console.log('Booking deleted:', bookingId);
+    alert('Booking deleted successfully!');
     await fetchBookings(); // Refresh list
   } catch (err: unknown) {
     // Type assertion for error handling
     const error = err as { response?: { data?: { message?: string } } };
-    console.error("Failed to delete booking:", err);
-    alert(
-      "Failed to delete booking: " +
-        (error.response?.data?.message || "Unknown error")
-    );
+    console.error('Failed to delete booking:', err);
+    alert('Failed to delete booking: ' + (error.response?.data?.message || 'Unknown error'));
   }
 };
 

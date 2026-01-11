@@ -7,10 +7,7 @@
           <input type="file" accept="image/*" @change="uploadFloorPlan" />
         </div>
         <div v-if="!isViewingFloorPlan">
-          <button
-            class="mr-2 p-1 pl-3 pr-3 bg-gray-500 rounded text-white"
-            @click="addSeat"
-          >
+          <button class="mr-2 p-1 pl-3 pr-3 bg-gray-500 rounded text-white" @click="addSeat">
             Add Seat
           </button>
           <button
@@ -36,10 +33,7 @@
           </button>
         </div>
         <div>
-          <button
-            class="p-1 pl-3 pr-3 bg-gray-500 rounded text-white"
-            @click="saveFloorPlan"
-          >
+          <button class="p-1 pl-3 pr-3 bg-gray-500 rounded text-white" @click="saveFloorPlan">
             Save Floor Plan
           </button>
         </div>
@@ -69,11 +63,7 @@
           <label>
             <div class="flex items-center cursor-pointer">
               <span class="mr-1">Available:</span>
-              <input
-                type="checkbox"
-                v-model="selectedSeat.available"
-                class="hidden"
-              />
+              <input type="checkbox" v-model="selectedSeat.available" class="hidden" />
               <div
                 class="w-4 h-4 bg-gray-500 border-2 border-gray-600 rounded flex items-center justify-center transition-all"
               >
