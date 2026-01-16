@@ -5,6 +5,7 @@ The project demonstrates a clean frontend–backend separation and includes an i
 
 ## Features
 Floor Plan & Seat Management
+
 Upload floor plans using any image format (PNG / JPG / SVG, etc.)
 Interactive floor plan editor built with Fabric.js
 Drag, move, and arrange seats directly on the floor plan
@@ -18,6 +19,7 @@ Seat selection and booking
 Booking history tracking
 
 System Features
+
 RESTful API backend
 Frontend and backend separation
 Scalable project structure for future expansion
