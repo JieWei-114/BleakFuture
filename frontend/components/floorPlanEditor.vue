@@ -1,9 +1,15 @@
 <template>
   <div class="bg-gray-100 min-h-screen">
     <div class="w-full mt-2 p-3 md:p-5 border rounded bg-gray-300 mb-2">
-      <h1 class="font-bold text-lg md:text-xl pb-2 border-b border-gray-400 mb-3">
-        Floor Plan Editor
-      </h1>
+      <div class="flex border-b border-gray-400 mb-3">
+        <h1 class="font-bold text-lg md:text-xl pb-2">
+          Floor Plan Editor
+        </h1>
+        
+        <button class="btn-save sm:w-auto ml-auto m-1" @click="saveFloorPlan">
+          Save Plan
+        </button>
+      </div>
 
       <div class="flex flex-col gap-4">
         <div v-if="!isViewingFloorPlan" class="w-full">
@@ -15,18 +21,13 @@
           />
         </div>
 
-        <div class="flex flex-wrap items-center justify-between gap-2">
+
           <div v-if="!isViewingFloorPlan" class="flex flex-wrap gap-2">
             <button class="btn-primary" @click="addSeat">Add Seat</button>
             <button class="btn-danger" :disabled="!selectedSeat" @click="deleteSeat">Delete</button>
             <button class="btn-action" :disabled="!selectedSeat" @click="lockSeat">Lock</button>
             <button class="btn-action" :disabled="!selectedSeat" @click="unlockSeat">Unlock</button>
           </div>
-
-          <button class="btn-save w-full sm:w-auto ml-auto" @click="saveFloorPlan">
-            Save Plan
-          </button>
-        </div>
       </div>
     </div>
 
@@ -37,11 +38,11 @@
     </div>
 
     <div
-      class="w-full mt-2 p-3 md:p-4 border rounded bg-gray-300 relative min-h-[220px] md:h-[180px]"
+      class="w-full mt-2 p-3 md:p-4 border rounded bg-gray-300 relative lg:h-[180px]"
     >
-      <div class="flex flex-col md:flex-row justify-between gap-6">
-        <div v-if="selectedSeat" class="flex-1 space-y-3">
-          <h2 class="font-bold text-lg border-b border-gray-400 pb-1">Seat Info</h2>
+      <div class="flex flex-col lg:flex-row justify-between gap-6">
+        <div v-if="selectedSeat" class="flex-1 border-b border-gray-400 ">
+          <h2 class="font-bold text-lg pb-1">Seat Info</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <label class="flex flex-col text-sm font-medium">
               Seat Number:
@@ -96,7 +97,7 @@
 
         <div
           v-if="!isViewingFloorPlan"
-          class="grid grid-cols-3 gap-1.5 w-[140px] mx-auto md:mx-0 shrink-0"
+          class="grid grid-cols-3 gap-1.5 w-[140px] mx-auto lg:mx-0 shrink-0"
         >
           <button
             @click="moveSeat('upper-left')"
@@ -621,7 +622,7 @@ label {
   @apply p-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-blue-300 text-sm font-medium;
 }
 .btn-save {
-  @apply p-2 px-6 bg-green-600 text-white rounded hover:bg-green-700 text-sm font-medium;
+  @apply p-2 px-4 bg-green-600 text-white rounded hover:bg-green-700 text-sm font-medium;
 }
 
 .dpad-btn {

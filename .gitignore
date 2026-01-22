@@ -23,3 +23,12 @@ Thumbs.db
 
 # ===== editor =====
 .vscode/
+
+# ===== Nuxt 3 =====
+.nuxt/
+.nitro/
+.cache/
+.data/
+
+# ===== TypeScript =====
+*.tsbuildinfo

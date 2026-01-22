@@ -22,6 +22,7 @@ Booking history tracking
 
 RESTful API backend
 Frontend and backend separation
+Responsive Layout
 Scalable project structure for future expansion
 Role-based access support (e.g. admin / super admin)
 

@@ -2,7 +2,10 @@
   <div class="p-10">
     <h1 class="text-2xl font-bold mb-4">Building Manage</h1>
     <div class="flex flex-col lg:flex-row justify-between gap-6">
-      <div v-if="isSuperAdmin" class="w-full lg:w-[40%] bg-gray-300 p-5 rounded-md h-fit max-h-none">
+      <div
+        v-if="isSuperAdmin"
+        class="w-full lg:w-[40%] bg-gray-300 p-5 rounded-md h-fit max-h-none"
+      >
         <!-- Add Building (Super Admin only) -->
         <div class="mb-5">
           <h2 class="text-xl font-semibold mb-5">Add Building</h2>
@@ -56,16 +59,21 @@
         </div>
       </div>
 
-      <div 
-        class="w-full lg:w-[58%] bg-gray-300 p-4 md:p-6 rounded-md max-h-[475px] flex flex-col" 
+      <div
+        class="w-full lg:w-[58%] bg-gray-300 p-4 md:p-6 rounded-md max-h-[475px] flex flex-col"
         :class="{ 'w-full': !isSuperAdmin }"
       >
         <h2 class="text-xl mb-5 font-semibold">Buildings and Floors</h2>
-        
+
         <div class="overflow-y-auto rounded-md pr-1">
-          <div v-for="building in buildings" :key="building.id" class="mb-4 rounded-xl overflow-hidden shadow-sm">
-            
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-3 border-b gap-3">
+          <div
+            v-for="building in buildings"
+            :key="building.id"
+            class="mb-4 rounded-xl overflow-hidden shadow-sm"
+          >
+            <div
+              class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-3 border-b gap-3"
+            >
               <div class="flex-1 w-full">
                 <input
                   v-if="editingBuildingId === building.id"
@@ -75,7 +83,7 @@
                 />
                 <span class="pl-1 text-lg font-bold text-gray-800" v-else>{{ building.name }}</span>
               </div>
-              
+
               <div class="flex space-x-2 w-full sm:w-auto justify-end">
                 <button
                   v-if="editingBuildingId === building.id"
@@ -161,13 +169,16 @@
       <!-- Floor Plan Editor Modal for Editing -->
       <div
         v-if="showFloorPlanEditor"
-        class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
+        class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50"
       >
-        <div class="bg-white p-4 rounded-lg w-[82%] max-h-[90%] overflow-y-auto">
+        <div
+          class="bg-white p-4 ml-0 mt-20 rounded-lg w-[70%] max-h-[90%] overflow-y-auto md:ml-64 md:mt-0"
+        >
           <floor-plan-editor
             :floor-id="selectedFloorId"
             :is-viewing-floor-plan="isViewingFloorPlan"
             @floor-plan-saved="onFloorPlanSaved"
+            class="bg-white"
           />
           <button
             @click="closeFloorPlanEditor"
