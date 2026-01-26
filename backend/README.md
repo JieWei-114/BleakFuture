@@ -22,24 +22,26 @@ JWT_SECRET=your_jwt_secret
 ```
 
 ## Install & run (development)
-
+````
 cd backend
 npm install
 npm run dev
-
+````
 
 ## Database migrations & seeds
-
+````
 cd backend
 npx sequelize-cli db:migrate
 npx sequelize-cli db:seed:all
+````
 
 ## Linting & formatting
-
+````
 cd backend
 npm run lint
 npm run lint:fix
 npm run format
+````
 
 ## Notes
 - Uploaded floorplans are saved in `public/uploads/floorplans/`.
