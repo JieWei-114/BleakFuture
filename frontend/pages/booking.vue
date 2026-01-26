@@ -1,5 +1,5 @@
 <template>
-  <div class="p-10">
+  <div class="p-10 max-w-[880px] min-w-[880px] overflow-auto">
     <div class="flex mb-4 justify-between">
       <h1 class="text-2xl font-bold">Booking</h1>
       <div v-if="authStore.user" class="flex text-lg items-center">

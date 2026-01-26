@@ -15,13 +15,13 @@
       </template>
 
       <main 
-        class="flex-1 transition-all duration-300"
+        class="flex-1 transition-all duration-300 overflow-auto"
         :class="{ 
           'md:ml-48': authStore.isAuthenticated,
           'pt-16 md:pt-0': authStore.isAuthenticated
         }"
       >
-        <div class="p-4 md:p-8">
+        <div class="p-4 md:p-8 w-full max-w-[1024px] mx-auto min-h-full">
           <NuxtPage />
         </div>
       </main>

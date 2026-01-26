@@ -1,5 +1,5 @@
 <template>
-  <div class="p-10">
+  <div class="p-10 max-w-[880px] min-w-[880px] overflow-auto">
     <h1 class="text-2xl font-bold mb-4">Building Manage</h1>
     <div class="flex flex-col lg:flex-row justify-between gap-6">
       <div
@@ -172,7 +172,7 @@
         class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50"
       >
         <div
-          class="bg-white p-4 ml-0 mt-20 rounded-lg w-[100%] max-h-[90%] overflow-y-auto md:ml-64 md:mt-0"
+          class="bg-white p-4 ml-0 mt-20 rounded-lg w-[850px] max-h-[90%] overflow-y-auto md:ml-64 md:mt-0"
         >
           <floor-plan-editor
             :floor-id="selectedFloorId"
