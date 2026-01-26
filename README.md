@@ -1,72 +1,72 @@
 # Workspace Management System
 
-BleakFuture is a full-stack seat booking solution built with Nuxt 3 (Vue 3) for the frontend and Node.js + TypeScript for the backend.
-The project demonstrates a clean frontend–backend separation and includes an interactive floor plan editor for seat layout management.
+A full-stack seat booking solution built with Nuxt 3 (Vue 3) for the frontend and Node.js + TypeScript for the backend. The project features an interactive floor plan editor for seat layout management, enabling to efficiently manage workspace bookings.
 
 ## Features
-**Floor Plan & Seat Management**
 
-Upload floor plans using any image format (PNG / JPG / SVG, etc.)
-Interactive floor plan editor built with Fabric.js + JavaScript
-Drag, move, and arrange seats directly on the floor plan
-Visual seat positioning with real-time preview
-Persist seat layout data to backend
+### Floor Plan & Seat Management
+- **Upload Floor Plans**:
+  - Support for multiple image formats (PNG, JPG, SVG, etc.)
+- **Interactive Floor Plan Editor**:
+  - Built with Fabric.js for intuitive drag-and-drop functionality
+  - Flexible floor design without hardcoded layouts
+- **Visual Seat Positioning**: 
+  - Drag, move, and arrange seats directly on the floor plan
+  - Real-time preview of seat layouts
+  - Canvas-based coordinate system for precise placement
+  - Seat scale adjustment for different floor plan sizes
+- **Persistent Storage**:
+  - Seat layout data serialized and stored in the backend
+- **Multi-Building Support**:
+  - Manage multiple buildings, floors, and floor plans
 
-**Seat Booking**
+### Seat Booking
+- **Browse by Location**:
+  - View seat layouts organized by building and floor
+- **Interactive Seat Selection**:
+  - Visual interface for selecting available seats
+- **Booking Management**:
+  - Create, view, and cancel bookings
+- **Booking History**:
+  - Track all past and current bookings
+- **Real-time Availability**:
+  - Check seat availability before booking
 
-Seat layout browsing by building and floor
-Seat selection and booking
-Booking history tracking
+### User Management
+- **Authentication System**:
+  - Secure login and registration
+- **Role-Based Access Control**:
+  - Support for regular users, admins, and super admins
+- **User Profiles**:
+  - View and manage personal information
+- **Admin Dashboard**:
+  - User management interface for administrators
 
-**System Features**
-
-RESTful API backend
-Frontend and backend separation
-Responsive Layout
-Scalable project structure for future expansion
-Role-based access support (e.g. admin / super admin)
+### System Features
+- RESTful API backend with Express
+- Clean frontend–backend separation
+- Responsive layout with Tailwind CSS
+- Type-safe development with TypeScript
+- State management with Pinia
+- Database migrations with Sequelize
+- Scalable project structure for future expansion
 
 ## Tech Stack
-**Frontend**
-````
-Nuxt 3 (Vue 3 + Vite) 
+### Frontend
+- **Framework**: Nuxt 3 (Vue 3 + Vite)
+- **Language**: TypeScript + JavaScript
+- **State Management**: Pinia
+- **Styling**: Tailwind CSS
+- **HTTP Client**: Axios
+- **Canvas Editor**: Fabric.js (Floor plan editor)
 
-TypeScript + JavaScript 
-
-Pinia (State Management) 
-
-Tailwind CSS 
-
-Axios 
-
-Fabric.js (Canvas-based floor plan editor) 
-````````
-
-**Backend**
-````
-Node.js 
-
-Express 
-
-TypeScript 
-
-Sequelize ORM 
-
-PostgreSQL (or other SQL databases) 
-````
-
-### Floor Plan Editor (Fabric.js)
-The floor plan editor is implemented using Fabric.js, providing a canvas-based editing experience
-Upload any image format as a floor plan background
-Drag & drop seats onto the canvas
-Move, align, and reposition seats freely
-Canvas-based coordinate system for precise seat placement
-Seat layout data can be serialized and stored in the backend
-
-This approach allows:
-Flexible floor design without hardcoded layouts
-Easy future extension (zones, meeting rooms, equipment, etc.)
-Visual consistency between admin editing and user booking views
+### Backend
+- **Runtime**: Node.js
+- **Framework**: Express
+- **Language**: TypeScript
+- **ORM**: Sequelize
+- **Database**: PostgreSQL (configurable for other SQL databases)
+- **Authentication**: JWT-based authentication
 
 ## Prerequisites
 ````
@@ -89,7 +89,6 @@ cp .env.example .env   # create and edit .env as needed, refer to backend readme
 npm run dev
 ````
 
-
 **Frontend setup (development)**
 ````
 cd frontend
@@ -99,9 +98,30 @@ npm install
 npm run dev
 
 ````
-**Frontend will be available at:**
 
-http://localhost:3000
+## Database Management
+### Backend migrations:
+````
+cd backend
+npx sequelize-cli db:migrate
+````
+
+### Reverting Migrations: 
+````
+cd backend
+npx sequelize-cli db:migrate:undo
+````
+
+### Creating New Migrations: 
+```
+cd backend
+npx sequelize-cli migration:generate --name your-migration-name
+```
+
+### Database Connection Issues
+- Verify PostgreSQL is running
+- Check database credentials in `.env`
+- Ensure the database exists: `createdb your_database_name`
 
 ### Linting & Formatting
 
@@ -123,18 +143,20 @@ npm run lint:fix
 npm run format
 ````
 
+## Authentication Flow
+
+Authentication is handled by:
+- **Backend**:
+  - JWT tokens
+- **Frontend**:
+  - Pinia store
+  - Global middleware
+
+Protected routes automatically redirect unauthenticated users to the login page.
+
 ## Useful Notes
-
-Backend migrations:
-````
-npx sequelize-cli db:migrate
-
-(Run from backend/ directory)
-
-Floor plan images are stored in:
-````
-
-backend/public/uploads/floorplans/
+- Floor plan images are stored in: backend/public/uploads/floorplans/
+- Seat positions are stored as JSON coordinates in the database
 
 ## App screenshot
 
@@ -142,8 +164,7 @@ backend/public/uploads/floorplans/
 ![App screenshot](assets/screenshot2.png)
 ![App screenshot](assets/screenshot3.png)
 
-### This was mainly for practice purposes
-
+## This was mainly for practice purposes
 ````
 FaricJs is fine for a simple demos or basic drawing.
 But for complex, rule-driven editors, the code will become messy and hard to debug.
